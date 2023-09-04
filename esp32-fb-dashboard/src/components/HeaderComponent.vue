@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="../assets/logo.png" />
+    <img :src="require('@/assets/logo.png')">
     <h1>Ensee Project Dashboard</h1>
     <ButtonComponent />
   </header>
@@ -17,6 +17,7 @@ export default {
         {
           name: "logo",
           src: "/assets/logo.png",
+        
         }
       ]
     }
