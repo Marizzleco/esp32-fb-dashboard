@@ -1,9 +1,7 @@
 <template>
     <div class="card">   
-        <v-card>
-        <v-card-title> {{ title }} </v-card-title>
-        <v-card-text> {{ details }} </v-card-text>
-        </v-card>
+        <h2> {{ title }} </h2>
+        <h3> {{ details }} </h3>
     </div>
 </template>
 
@@ -23,9 +21,12 @@ export default {
 
 <style scoped>
 .card {
-/* height: 200px;
+height: 200px;
 width: 200px;
-background-color: grey;
-border-radius: 25px; */
+border-radius: 25px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+text-align: center;
+padding: 20px;
+display: block;
 }
 </style>

@@ -21,5 +21,12 @@ export default {
 </script>
 
 <style scoped>
-
+* {
+  margin: 20px;
+}
+select {
+  height: 50px;
+  width: 200px;
+  padding: 16px 20px;
+}
 </style>
