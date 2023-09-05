@@ -1,22 +1,41 @@
 <template>
-    <main class="container">
-        <CardComponent title="Variable 1" details="Var Type 1"/>
-        <CardComponent title="Variable 2" details="Var Type 2"/>
-        <CardComponent title="Variable 3" details="Var Type 3"/>
-    </main>
+  <main class="container">
+    <div v-for="(category, categoryName) in categories" :key="categoryName">
+      <h2>{{ categoryName }}</h2>
+      <div v-for="(variable, variableName) in category" :key="variableName">
+        <CardComponent :cardData="variable" :name="variableName" />
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-import CardComponent from './CardComponent.vue';
+import CardComponent from "./CardComponent.vue";
+import { ref, onValue } from "firebase/database";
+import db from "../firebase/init.js";
 
 export default {
   name: "DashboardComponent",
   data() {
-    
+    return {
+      categories: {},
+    };
+  },
+  created() {
+    this.getVariables();
+  },
+  methods: {
+    getVariables() {
+      const variablesRef = ref(db);
+
+      onValue(variablesRef, (snapshot) => {
+        this.categories = snapshot.val() || {};
+      });
+    },
   },
   components: {
     CardComponent,
-  }
+  },
 };
 </script>
 
