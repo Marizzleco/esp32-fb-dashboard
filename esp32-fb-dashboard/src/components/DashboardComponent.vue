@@ -1,10 +1,12 @@
 <template>
   <main class="container">
     <div v-for="(category, categoryName) in categories" :key="categoryName">
-      <h2>{{ categoryName }}</h2>
-      <div v-for="(variable, variableName) in category" :key="variableName">
-        <CardComponent :cardData="variable" :name="variableName" />
-      </div>
+      <h2>{{ categoryName }} </h2>
+      <span class="cards" v-for="(vars, index) in category" :key="index">
+        <div v-for="(variable) in vars" :key="variable">
+          <CardComponent :cardData="variable"  />
+        </div>
+      </span>
     </div>
   </main>
 </template>
@@ -39,22 +41,25 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .container {
   max-width: 1000px;
   margin: 30px auto;
   overflow: auto;
-  min-height: 300px;
   border: 1px solid steelblue;
-  padding: 30px;
   border-radius: 5px;
-  display: flex;
+}
+
+.cards {
+  display: inline-flex;
   justify-content: space-between;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
 @media (max-width: 800px) {
-  .container {
+  .cards {
     flex-direction: column;
   }
 }

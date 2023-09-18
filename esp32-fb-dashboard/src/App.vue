@@ -1,15 +1,12 @@
 <template>
   <div class="app">
-      <HeaderComponent/>
-      <div class="selectors">
-        <DropdownSelector name="project"/>
-        <DropdownSelector name="device"/>
-      </div>
+      <HeaderComponent class="header"/>
+      <DropdownDashboard/>
       <div class="dashboard">
         <DashboardComponent/>
       </div>
       <div class="footer">
-        <p>StringerDev Copyright 2023</p>
+        <p>Stringify Copyright 2023</p>
       </div>
   </div>
 </template>
@@ -17,7 +14,7 @@
 <script>
 import HeaderComponent from './components/HeaderComponent.vue'
 import DashboardComponent from './components/DashboardComponent.vue'
-import DropdownSelector from './components/DropdownSelector.vue'
+import DropdownDashboard from './components/DropdownDashboard.vue'
 
 export default {
   name: 'App',
@@ -25,7 +22,7 @@ export default {
   components: {
     HeaderComponent,
     DashboardComponent,
-    DropdownSelector,
+    DropdownDashboard
   },
 
   data: () => ({
@@ -48,8 +45,11 @@ export default {
   overflow: auto;
   min-height: 300px;
   border: 1px solid #000;
-  padding: 30px;
+  /* padding: 30px; */
   border-radius: 5px;
+}
+.header, .dashboard, .footer {
+  margin: 30px;
 }
 .selectors {
   display: flex;

@@ -1,20 +1,17 @@
 <template>
   <div class="card">
-    <h2>{{ name }}</h2>
-    <h3>{{ cardData }}</h3>
+    <h2>{{ cardData.name }}</h2>
+    <h3> {{ cardData.type }}</h3>
+    <h3> {{ new Date(cardData.updated) }}</h3>
+    <h3> {{ cardData.value }}</h3>
   </div>
 </template>
 
 <script>
-// import { defineComponent } from '@vue/composition-api'
-
 export default {
   name: "CardComponent",
   props: {
-    name: String,
     cardData: Object,
-    // title: String,
-    // details: String,
   },
   data() {},
 };
@@ -22,8 +19,8 @@ export default {
 
 <style scoped>
 .card {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   border-radius: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
