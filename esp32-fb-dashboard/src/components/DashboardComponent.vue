@@ -1,12 +1,16 @@
 <template>
   <main class="container">
-    <div v-for="(category, categoryName) in categories" :key="categoryName">
-      <h2>{{ categoryName }} </h2>
+    <div v-for="(category, categoryName) in categories" :key="categoryName" >
+      <h2 class="title" v-if="shouldDisplay(categoryName)" >{{ categoryName }} </h2>
       <span class="cards" v-for="(vars, index) in category" :key="index">
-        <div v-for="(variable) in vars" :key="variable">
-          <CardComponent :cardData="variable"  />
-        </div>
-      </span>
+  <div v-for="(variable) in vars" :key="variable.id">
+    <CardComponent
+      v-if="shouldDisplay(categoryName)"
+      :cardData="variable"
+      :key="variable.id"
+    />
+  </div>
+</span>
     </div>
   </main>
 </template>
@@ -21,7 +25,11 @@ export default {
   data() {
     return {
       categories: {},
+
     };
+  },
+  props: {
+    selectedFilter: String
   },
   created() {
     this.getVariables();
@@ -34,6 +42,11 @@ export default {
         this.categories = snapshot.val() || {};
       });
     },
+
+  shouldDisplay(categoryName) {
+    return !this.selectedFilter || categoryName === this.selectedFilter;
+  }
+    
   },
   components: {
     CardComponent,
@@ -41,13 +54,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   max-width: 1000px;
   margin: 30px auto;
   overflow: auto;
   border: 1px solid steelblue;
   border-radius: 5px;
+  padding: 20px;
+
 }
 
 .cards {
@@ -56,6 +71,11 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 50px;
+}
+
+h2 {
+  margin: 20px;
+  display: inline-block;
 }
 
 @media (max-width: 800px) {

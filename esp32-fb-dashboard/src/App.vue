@@ -1,9 +1,9 @@
 <template>
   <div class="app">
       <HeaderComponent class="header"/>
-      <DropdownDashboard/>
+      <DropdownDashboard @filter-change="handleFilterChange"/>
       <div class="dashboard">
-        <DashboardComponent/>
+        <DashboardComponent :selectedFilter="selectedFilter"/>
       </div>
       <div class="footer">
         <p>Stringify Copyright 2023</p>
@@ -25,9 +25,17 @@ export default {
     DropdownDashboard
   },
 
-  data: () => ({
-    //
-  }),
+  data(){ 
+    return {
+      selectedFilter: '',
+    };
+  },
+  methods: {
+    handleFilterChange(newFilter) {
+      console.log('Received new filter:', newFilter);
+      this.selectedFilter = String(newFilter);
+    },
+  },
 }
 </script>
 

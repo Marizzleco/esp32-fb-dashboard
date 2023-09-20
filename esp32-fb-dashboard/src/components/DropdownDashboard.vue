@@ -1,43 +1,24 @@
 <template>
     <main class="container">
-        <div class="selectors" v-for="(category, categoryName) in categories" :key="categoryName">
-            <DropdownSelector name="device" :values="categoryName"/>
+        <div>
+            <DropdownSelector name="device" @filter-change="handleFilterChange"/>
         </div>
-      <!-- <div v-for="(category, categoryName) in categories" :key="categoryName">
-        <h2>{{ categoryName }} </h2>
-        <span class="dropdowns" v-for="(vars, index) in category" :key="index">
-          <div v-for="(variable) in vars" :key="variable">
-            <CardComponent :cardData="variable"  />
-          </div>
-        </span>
-      </div> -->
     </main>
   </template>
   
   <script>
   import DropdownSelector from "./DropdownSelector.vue";
-  import { ref, onValue } from "firebase/database";
-  import db from "../firebase/init.js";
+
   
   export default {
     name: "DropdownDashboard",
     data() {
-      return {
-        categories: {},
-      };
+  },
+  methods: {
+    handleFilterChange(newFilter) {
+      this.$emit('filter-change', newFilter);
     },
-    created() {
-      this.getVariables();
-    },
-    methods: {
-      getVariables() {
-        const variablesRef = ref(db);
-  
-        onValue(variablesRef, (snapshot) => {
-          this.categories = snapshot.val() || {};
-        });
-      },
-    },
+  },
     components: {
       DropdownSelector,
     },

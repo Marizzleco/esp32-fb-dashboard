@@ -1,9 +1,8 @@
 <template>
   <div class="card">
     <h2>{{ cardData.name }}</h2>
-    <h3> {{ cardData.type }}</h3>
-    <h3> {{ new Date(cardData.updated) }}</h3>
-    <h3> {{ cardData.value }}</h3>
+    <h3>{{ cardData.value }}</h3>
+    <p>Last Updated: {{ new Date(cardData.updated).toLocaleString() }}</p>
   </div>
 </template>
 
@@ -13,7 +12,6 @@ export default {
   props: {
     cardData: Object,
   },
-  data() {},
 };
 </script>
 
@@ -26,5 +24,9 @@ export default {
   text-align: center;
   padding: 20px;
   display: block;
+}
+
+h2, h3 {
+  padding: 20px;
 }
 </style>
