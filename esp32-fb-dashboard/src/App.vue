@@ -44,21 +44,18 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Tahoma, sans-serif;
+  font-family: Lato, sans-serif;
+  background-color: #f2eeed;
 }
 
 .app {
-  max-width: 1000px;
-  margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid #000;
-  /* padding: 30px; */
-  border-radius: 5px;
 }
 .header, .dashboard, .footer {
-  margin: 30px;
+  padding: 30px;
 }
+
 .selectors {
   display: flex;
   justify-content: center;

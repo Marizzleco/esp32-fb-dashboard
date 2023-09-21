@@ -1,8 +1,8 @@
 <template>
     <div class="select-menu">
         <select v-model="filter.select" @change="handleFilterChange">
-          <option value="0"> Select {{ name }}: </option>
-          <option v-for="(category, categoryName) in categories" :key="categoryName">{{ categoryName }}</option>
+          <option value=""> Select {{ name }}: </option>
+          <option v-for="(device, deviceName) in devices" :key="deviceName">{{ deviceName }}</option>
         </select>
     </div>
 </template>
@@ -15,7 +15,7 @@ export default {
   name: "DropdownSelector",
   data() {
     return {
-        categories: {},
+        devices: {},
         filter: {select: ''}
         };
         
@@ -31,7 +31,7 @@ export default {
         const variablesRef = ref(db);
   
         onValue(variablesRef, (snapshot) => {
-          this.categories = snapshot.val() || {};
+          this.devices = snapshot.val() || {};
         });
       },
       handleFilterChange() {
@@ -44,10 +44,14 @@ export default {
 <style scoped>
 * {
   margin: 20px;
+  
+  padding: 10px;
 }
 select {
   height: 50px;
   width: 200px;
   padding: 16px 20px;
+  background-color: #fff;
+  border-radius: 25px;
 }
 </style>

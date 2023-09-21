@@ -16,6 +16,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+  background-color: #fff;
+}
 .card {
   height: 250px;
   width: 250px;
@@ -27,6 +30,7 @@ export default {
 }
 
 h2, h3 {
+
   padding: 20px;
 }
 </style>

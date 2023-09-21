@@ -1,17 +1,17 @@
 <template>
   <main class="container">
-    <div v-for="(category, categoryName) in categories" :key="categoryName" >
-      <h2 class="title" v-if="shouldDisplay(categoryName)" >{{ categoryName }} </h2>
-      <span class="cards" v-for="(vars, index) in category" :key="index">
+    <span class="device" v-for="(device, deviceName) in devices" :key="deviceName" >
+      <h2 class="title" v-if="shouldDisplay(deviceName)" >{{ deviceName }} </h2>
+      <span class="cards" v-for="(vars, index) in device" :key="index">
   <div v-for="(variable) in vars" :key="variable.id">
     <CardComponent
-      v-if="shouldDisplay(categoryName)"
+      v-if="shouldDisplay(deviceName)"
       :cardData="variable"
       :key="variable.id"
     />
   </div>
 </span>
-    </div>
+</span>
   </main>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   name: "DashboardComponent",
   data() {
     return {
-      categories: {},
+      devices: {},
 
     };
   },
@@ -39,12 +39,16 @@ export default {
       const variablesRef = ref(db);
 
       onValue(variablesRef, (snapshot) => {
-        this.categories = snapshot.val() || {};
+        this.devices = snapshot.val() || {};
       });
     },
 
-  shouldDisplay(categoryName) {
-    return !this.selectedFilter || categoryName === this.selectedFilter;
+  shouldDisplay(deviceName) {
+    if(this.selectedFilter === 0) {
+      return true;
+    } else {
+    return !this.selectedFilter || deviceName === this.selectedFilter;
+    }
   }
     
   },
@@ -56,13 +60,12 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 1000px;
-  margin: 30px auto;
   overflow: auto;
-  border: 1px solid steelblue;
-  border-radius: 5px;
   padding: 20px;
+}
 
+.category {
+  padding: 20px;
 }
 
 .cards {
@@ -74,7 +77,7 @@ export default {
 }
 
 h2 {
-  margin: 20px;
+  margin: 30px;
   display: inline-block;
 }
 
